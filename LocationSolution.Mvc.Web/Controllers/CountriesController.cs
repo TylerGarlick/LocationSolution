@@ -5,6 +5,7 @@ using LocationSolution.Data.Core;
 using LocationSolution.Mvc.Web.Models.Countries;
 using LocationSolution.Services.Common;
 using NexBusiness.Validation.Core;
+using PagedList;
 
 namespace LocationSolution.Mvc.Web.Controllers
 {
@@ -17,21 +18,18 @@ namespace LocationSolution.Mvc.Web.Controllers
             CountriesService = countriesService;
         }
 
-        public ActionResult Index(string query)
+        public ActionResult Index(string query, int page = 1)
         {
             var countries = string.IsNullOrEmpty(query) ?
                                 CountriesService.GetAll() :
                                 CountriesService.SearchByCountryNameOrCode(query);
 
             var model = new CountriesIndexModel() { Countries = countries };
+            model.CountriesResults = new PagedList<Country>(model.Countries, page, 50);
+            
             return View(model);
         }
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
+      
         public ActionResult Create()
         {
             var numberOfCountries = CountriesService.GetAll().Count();

@@ -61,7 +61,7 @@ namespace LocationSolution.Services.Core
         public IEnumerable<State> SearchByStateNameOrCode(string query)
         {
             var loweredQuery = query.ToLower();
-            return GetAll().Where(s => s.StateName.ToLower().Contains(loweredQuery) || s.StateCode.ToLower().Contains(loweredQuery));
+            return GetAll().Where(s => s.StateName.ToLower().Contains(loweredQuery) || s.StateCode.ToLower().Contains(loweredQuery) || s.Country.CountryName.ToLower().Contains(loweredQuery) || s.Country.CountryCode.ToLower().Contains(loweredQuery));
         }
 
         public IEnumerable<State> GetAllStatesByCountryCode(string countryCode)

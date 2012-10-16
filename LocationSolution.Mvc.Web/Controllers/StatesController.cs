@@ -5,6 +5,7 @@ using LocationSolution.Mvc.Web.Models.States;
 using LocationSolution.Services.Common;
 using System.Web.Mvc;
 using NexBusiness.Validation.Core;
+using PagedList;
 
 namespace LocationSolution.Mvc.Web.Controllers
 {
@@ -19,12 +20,14 @@ namespace LocationSolution.Mvc.Web.Controllers
             StatesService = statesService;
         }
 
-        public ActionResult Index(string query)
+        public ActionResult Index(string query, int page = 1)
         {
             var states = string.IsNullOrEmpty(query) ?
                             StatesService.GetAll() :
                             StatesService.SearchByStateNameOrCode(query);
             var model = new StatesIndexModel() { States = states };
+
+            model.StateResults = new PagedList<State>(model.States, page, 50);
             return View(model);
         }
 

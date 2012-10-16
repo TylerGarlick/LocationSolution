@@ -1,24 +1,37 @@
-﻿@model LocationSolution.Mvc.Web.Models.Search.SearchIndexModel
+﻿@using PagedList
+@using PagedList.Mvc
+@model LocationSolution.Mvc.Web.Models.Search.SearchIndexModel
 
 @{
     ViewBag.Title = "Search Results";
 }
 
 <h1>Search Results</h1>
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th>Type</th>
-            <th>Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var result in Model.Results)
-        {
+
+@if (Model.Results.Count > 0)
+{
+
+    <table class="table table-striped table-hover">
+        <thead>
             <tr>
-                <td>@result.Description</td>
-                <td><a href="@result.Url">@result.Name</a></td>
+                <th>Type</th>
+                <th>Name</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var result in Model.PagedResults)
+            {
+                <tr>
+                    <td>@result.Description</td>
+                    <td><a href="@result.Url">@result.Name</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.PagedListPager(Model.PagedResults, page => Url.Action("Index", new { page }))
+    
+}
+else
+{
+    <div class="well">No Search Results</div>
+}

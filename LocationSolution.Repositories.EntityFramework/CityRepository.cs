@@ -21,7 +21,8 @@ namespace LocationSolution.Repositories.EntityFramework
 
         public IQueryable<City> SearchByCityNameOrNickName(string query)
         {
-            return All().Where(c => c.CityName.Contains(query) || c.NickName.Contains(query));
+            var loweredQuery = query.ToLower();
+            return All().Where(c => c.CityName.ToLower().Contains(loweredQuery) || c.NickName.ToLower().Contains(loweredQuery) || c.State.StateName.ToLower().Contains(loweredQuery) || c.State.StateCode.ToLower().Contains(loweredQuery) || c.State.Country.CountryName.ToLower().Contains(loweredQuery) || c.State.Country.CountryCode.ToLower().Contains(loweredQuery));
         }
 
         public IQueryable<City> ByCountryCodeAndStateId(string countryCode, int stateId)

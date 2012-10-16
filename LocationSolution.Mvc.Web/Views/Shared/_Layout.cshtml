@@ -21,8 +21,8 @@
                 @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "navbar-form pull-right" }))
                 {
                     <div class="input-append">
-                        @Html.TextBox("Query", Request["Query"])
-                        <button type="submit" class="btn">Global Search</button>
+                        @Html.TextBox("Query", Request["Query"], new {placeholder = "Global Search"})
+                        <button type="submit" class="btn btn-inverse">Search</button>
                     </div>
                 }
 

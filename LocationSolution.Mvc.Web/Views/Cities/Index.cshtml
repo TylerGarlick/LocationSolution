@@ -1,4 +1,5 @@
-﻿@model LocationSolution.Mvc.Web.Models.Cities.CitiesIndexModel
+﻿@using PagedList.Mvc
+@model LocationSolution.Mvc.Web.Models.Cities.CitiesIndexModel
 
 @{
     ViewBag.Title = "Cities";
@@ -31,7 +32,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var city in Model.Cities)
+        @foreach (var city in Model.CityResults)
         {
             <tr>
                 <td>@Html.ActionLink(city.State.Country.CountryName, "Edit", "Countries", new { id = city.State.Country.CountryCode }, null)</td>
@@ -45,3 +46,4 @@
         }
     </tbody>
 </table>
+@Html.PagedListPager(Model.CityResults, page => Url.Action("Index", new { page, query = Request["Query"] }))

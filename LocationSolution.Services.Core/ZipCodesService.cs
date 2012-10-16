@@ -60,7 +60,7 @@ namespace LocationSolution.Services.Core
 
         public IEnumerable<ZipCode> SearchByZipcode(string query)
         {
-            return ZipCodeRepository.All().Where(z => z.Zip.Contains(query));
+            return ZipCodeRepository.SearchByZipCode(query);
         }
 
         public IEnumerable<ZipCode> GetAllZipsByCountryCodeAndStateIdAndCityId(string countryCode, int stateId, int cityId)

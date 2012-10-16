@@ -7,6 +7,7 @@ using LocationSolution.Data.Core;
 using LocationSolution.Mvc.Web.Models.ZipCodes;
 using LocationSolution.Services.Common;
 using NexBusiness.Validation.Core;
+using PagedList;
 
 namespace LocationSolution.Mvc.Web.Controllers
 {
@@ -25,12 +26,13 @@ namespace LocationSolution.Mvc.Web.Controllers
             ZipCodesService = zipCodesService;
         }
 
-        public ActionResult Index(string query)
+        public ActionResult Index(string query, int page = 1)
         {
             var zipCodes = string.IsNullOrEmpty(query) ?
                                 ZipCodesService.GetAll() :
                                 ZipCodesService.SearchByZipcode(query);
             var model = new ZipCodesIndexModel() { ZipCodes = zipCodes };
+            model.ZipCodeResults = new PagedList<ZipCode>(model.ZipCodes, page, 50);
             return View(model);
         }
 

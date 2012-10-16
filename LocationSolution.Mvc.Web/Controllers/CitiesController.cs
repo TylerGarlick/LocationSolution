@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NexBusiness.Validation.Core;
+using PagedList;
 
 namespace LocationSolution.Mvc.Web.Controllers
 {
@@ -24,12 +25,13 @@ namespace LocationSolution.Mvc.Web.Controllers
             CitiesService = citiesService;
         }
 
-        public ActionResult Index(string query)
+        public ActionResult Index(string query, int page = 1)
         {
             var cities = string.IsNullOrEmpty(query) ?
                             CitiesService.GetAll() :
                             CitiesService.SearchByCityNameOrNickName(query);
             var model = new CitiesIndexModel() { Cities = cities };
+            model.CityResults = new PagedList<City>(model.Cities, page, 50);
             return View(model);
         }
 
