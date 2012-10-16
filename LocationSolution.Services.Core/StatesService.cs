@@ -60,7 +60,8 @@ namespace LocationSolution.Services.Core
 
         public IEnumerable<State> SearchByStateNameOrCode(string query)
         {
-            throw new NotImplementedException();
+            var loweredQuery = query.ToLower();
+            return GetAll().Where(s => s.StateName.ToLower().Contains(loweredQuery) || s.StateCode.ToLower().Contains(loweredQuery));
         }
 
         public IEnumerable<State> GetAllStatesByCountryCode(string countryCode)
@@ -100,7 +101,7 @@ namespace LocationSolution.Services.Core
         {
             foreach (var error in BasicStateValidation(entity)) yield return error;
 
-            if (entity.Country == null)
+            if (entity.Country != null)
             {
                 foreach (var error in ValidateUniquenessOfStateName(entity)) yield return error;
 
