@@ -24,21 +24,21 @@ namespace LocationSolution.Mvc.Web.Controllers
             ZipCodesService = zipCodesService;
         }
 
-        public ActionResult Index(string query, int page = 1)
+        public ActionResult Index(string q, int page = 1)
         {
             var model = new SearchIndexModel();
-            if (!string.IsNullOrEmpty(query))
+            if (!string.IsNullOrEmpty(q))
             {
-                foreach (var country in CountriesService.SearchByCountryNameOrCode(query))
+                foreach (var country in CountriesService.SearchByCountryNameOrCode(q))
                     model.Results.Add(new SearchResult() { Description = "Country", Name = country.CountryName, Url = Url.Action("Edit", "Countries", new { id = country.CountryCode }) });
 
-                foreach (var state in StatesService.SearchByStateNameOrCode(query))
+                foreach (var state in StatesService.SearchByStateNameOrCode(q))
                     model.Results.Add(new SearchResult() { Description = "State", Name = state.StateName, Url = Url.Action("Edit", "States", new { id = state.StateId }) });
 
-                foreach (var city in CitiesService.SearchByCityNameOrNickName(query))
+                foreach (var city in CitiesService.SearchByCityNameOrNickName(q))
                     model.Results.Add(new SearchResult() { Description = "City", Name = city.CityName, Url = Url.Action("Edit", "Cities", new { id = city.CityId }) });
 
-                foreach (var zipCode in ZipCodesService.SearchByZipcode(query))
+                foreach (var zipCode in ZipCodesService.SearchByZipcode(q))
                     model.Results.Add(new SearchResult() { Description = "Zip", Name = zipCode.Zip, Url = Url.Action("Edit", "ZipCodes", new { id = zipCode.Zip }) });
             }
 
