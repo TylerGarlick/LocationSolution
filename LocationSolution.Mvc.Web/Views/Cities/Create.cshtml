@@ -1,0 +1,57 @@
+﻿@model LocationSolution.Mvc.Web.Models.Cities.CityCreateModel
+
+@{
+    ViewBag.Title = "Create City";
+}
+
+<h1>Create City</h1>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(false)
+    <div class="control-group">
+        @Html.LabelFor(m => m.CountryCode)
+        <div class="controls">
+            <select data-val="true" data-val-required="The Country Code field is required." id="CountryCode" name="CountryCode" data-default-value="@Model.CountryCode" data-url="@Url.Content("~/api/countries")">
+                <option value="">Select a Country</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.StateId)
+        <div class="controls">
+            <select data-val="true" data-val-required="The State field is required." id="StateId" name="StateId" data-default-value="@Model.StateId" data-url="@Url.Content("~/api/countries/{countryCode}/states")">
+                <option value="">Select a State</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.CityName)
+        <div class="controls">
+            @Html.TextBoxFor(m => m.CityName, new { maxlength = "100", @class = "span3" })
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.NickName)
+        <div class="controls">
+            @Html.TextBoxFor(m => m.NickName, new { maxlength = "30", @class = "span2" })
+        </div>
+    </div>
+    
+    <div class="form-actions">
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn" })
+        <div class="pull-right">
+            <button type="submit" class="btn btn-primary">Create City</button>
+        </div>
+    </div>
+}
+
+
+@section scripts
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/App/Countries/country-utils.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/App/States/state-utils.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/App/Cities/cities.js")"></script>
+}

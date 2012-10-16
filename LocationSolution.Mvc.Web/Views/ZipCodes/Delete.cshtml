@@ -1,0 +1,18 @@
+﻿@model LocationSolution.Mvc.Web.Models.ZipCodes.ZipCodeDeleteModel
+
+@{
+    ViewBag.Title = "Delete Zip Code " + Model.ZipCode.Zip;
+}
+
+<h1>Delete Zip Code <small>@Model.ZipCode.Zip</small></h1>
+@using (Html.BeginForm())
+{
+    <p>Are you sure you want to delete <strong>@Model.ZipCode.Zip</strong>? This is permanent!</p>  
+    <div class="form-actions">
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn" })
+        <div class="pull-right">
+            <button type="submit" class="btn btn-danger">Delete Zip Code</button>
+        </div>
+    </div>
+}
+

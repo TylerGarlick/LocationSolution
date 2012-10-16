@@ -1,0 +1,47 @@
+﻿@model LocationSolution.Mvc.Web.Models.Cities.CitiesIndexModel
+
+@{
+    ViewBag.Title = "Cities";
+}
+
+<h1>Cities</h1>
+<div class="navbar">
+    <div class="navbar-inner">
+        @using (Html.BeginForm("Index", "Cities", FormMethod.Get, new { @class = "navbar-form pull-left" }))
+        {
+            <div class="input-append">
+                @Html.TextBox("Query", Request["Query"])
+                <button type="submit" class="btn">Search</button>
+            </div>
+        }
+        <div class="pull-right">
+            @Html.ActionLink("New City", "Create", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Country</th>
+            <th>State</th>
+            <th>City Name</th>
+            <th>Nick Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var city in Model.Cities)
+        {
+            <tr>
+                <td>@Html.ActionLink(city.State.Country.CountryName, "Edit", "Countries", new { id = city.State.Country.CountryCode }, null)</td>
+                <td>@Html.ActionLink(city.State.StateName, "Edit", "Countries", new {id = city.State.StateId}, null)</td>
+                <td>@city.CityName</td>
+                <td>@city.NickName</td>
+                <td>
+                    <div class="pull-right">@Html.ActionLink("Edit", "Edit", new { id = city.CityId }, new { @class = "btn btn-mini" }) @Html.ActionLink("Delete", "Delete", new { id = city.CityId }, new { @class = "btn btn-mini btn-danger" })</div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,46 @@
+﻿@model LocationSolution.Mvc.Web.Models.Countries.CountryUpdateModel
+
+@{
+    ViewBag.Title = "Update " + Model.CountryCode;
+}
+
+<h1>Update <small>@Model.CountryCode</small></h1>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(false)
+    <div class="control-group">
+        @Html.LabelFor(m => m.CountryCode)
+        <div class="controls">
+            @Html.TextBoxFor(m => m.CountryCode, new { maxlength = "3", disabled = "disabled" })
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.CountryName)
+        <div class="controls">
+            @Html.TextBoxFor(m => m.CountryName, new { maxlength = "100" })
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.CountryOrder)
+        <div class="controls">
+            @Html.TextBoxFor(m => m.CountryOrder, new { maxlength = "20" })
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.Displayable)
+        <div class="controls">
+            @Html.CheckBoxFor(m => m.Displayable)
+        </div>
+    </div>
+
+    <div class="form-actions">
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn" })
+        <div class="pull-right">
+            <button type="submit" class="btn btn-primary">Update Country</button>
+        </div>
+    </div>
+}

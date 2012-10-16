@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationSolution.Mvc.Web", "LocationSolution.Mvc.Web\LocationSolution.Mvc.Web.csproj", "{A8529340-48F7-4B7D-AD44-02E919BD7D27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationSolution.Mvc.Web.Tests", "LocationSolution.Mvc.Web.Tests\LocationSolution.Mvc.Web.Tests.csproj", "{B1D6F025-6180-4F3C-9CE6-CFFC56EBE768}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{4E0199A3-9F4C-4BAF-8752-D0FFA502338C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B8D96D4B-AB83-471D-8305-B8F0B96AA85D}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{F27975D4-C417-405E-881C-E6BE9B35FCB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationSolution.Data.Core", "LocationSolution.Data.Core\LocationSolution.Data.Core.csproj", "{67A89649-1760-4FC9-ACBD-62EFE3A19FD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{B4C00BD2-E63C-4991-90FC-893B941FB01D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationSolution.Repositories.Common", "LocationSolution.Repositories.Common\LocationSolution.Repositories.Common.csproj", "{6A65022D-39E4-4DA4-86E5-C92EF404FF13}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{C9164496-7036-405E-AD6C-4651D7CD3FF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationSolution.Services.Common", "LocationSolution.Services.Common\LocationSolution.Services.Common.csproj", "{26EEC875-75C8-40D2-A5C3-051A2721F1FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationSolution.Repositories.EntityFramework", "LocationSolution.Repositories.EntityFramework\LocationSolution.Repositories.EntityFramework.csproj", "{3C55D7C1-AF06-4E82-9500-7931856FBA74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationSolution.Services.Core", "LocationSolution.Services.Core\LocationSolution.Services.Core.csproj", "{FCC4DB62-EDE3-4C85-B8E8-F534A651E8FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationSolution.Repositories.Tests", "LocationSolution.Repositories.Tests\LocationSolution.Repositories.Tests.csproj", "{BEAE4231-D5A0-4626-9251-D0E3303931C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationSolution.Services.Core.Tests", "LocationSolution.Services.Core.Tests\LocationSolution.Services.Core.Tests.csproj", "{66D05098-B89A-4DBF-9DA0-64097F67D424}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8529340-48F7-4B7D-AD44-02E919BD7D27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8529340-48F7-4B7D-AD44-02E919BD7D27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8529340-48F7-4B7D-AD44-02E919BD7D27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8529340-48F7-4B7D-AD44-02E919BD7D27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1D6F025-6180-4F3C-9CE6-CFFC56EBE768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1D6F025-6180-4F3C-9CE6-CFFC56EBE768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1D6F025-6180-4F3C-9CE6-CFFC56EBE768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1D6F025-6180-4F3C-9CE6-CFFC56EBE768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67A89649-1760-4FC9-ACBD-62EFE3A19FD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67A89649-1760-4FC9-ACBD-62EFE3A19FD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67A89649-1760-4FC9-ACBD-62EFE3A19FD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67A89649-1760-4FC9-ACBD-62EFE3A19FD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A65022D-39E4-4DA4-86E5-C92EF404FF13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A65022D-39E4-4DA4-86E5-C92EF404FF13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A65022D-39E4-4DA4-86E5-C92EF404FF13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A65022D-39E4-4DA4-86E5-C92EF404FF13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26EEC875-75C8-40D2-A5C3-051A2721F1FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26EEC875-75C8-40D2-A5C3-051A2721F1FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26EEC875-75C8-40D2-A5C3-051A2721F1FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26EEC875-75C8-40D2-A5C3-051A2721F1FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C55D7C1-AF06-4E82-9500-7931856FBA74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C55D7C1-AF06-4E82-9500-7931856FBA74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C55D7C1-AF06-4E82-9500-7931856FBA74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C55D7C1-AF06-4E82-9500-7931856FBA74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCC4DB62-EDE3-4C85-B8E8-F534A651E8FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCC4DB62-EDE3-4C85-B8E8-F534A651E8FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCC4DB62-EDE3-4C85-B8E8-F534A651E8FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCC4DB62-EDE3-4C85-B8E8-F534A651E8FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEAE4231-D5A0-4626-9251-D0E3303931C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEAE4231-D5A0-4626-9251-D0E3303931C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEAE4231-D5A0-4626-9251-D0E3303931C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEAE4231-D5A0-4626-9251-D0E3303931C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D05098-B89A-4DBF-9DA0-64097F67D424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D05098-B89A-4DBF-9DA0-64097F67D424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D05098-B89A-4DBF-9DA0-64097F67D424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D05098-B89A-4DBF-9DA0-64097F67D424}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A8529340-48F7-4B7D-AD44-02E919BD7D27} = {4E0199A3-9F4C-4BAF-8752-D0FFA502338C}
+		{B1D6F025-6180-4F3C-9CE6-CFFC56EBE768} = {4E0199A3-9F4C-4BAF-8752-D0FFA502338C}
+		{67A89649-1760-4FC9-ACBD-62EFE3A19FD7} = {F27975D4-C417-405E-881C-E6BE9B35FCB8}
+		{6A65022D-39E4-4DA4-86E5-C92EF404FF13} = {B4C00BD2-E63C-4991-90FC-893B941FB01D}
+		{3C55D7C1-AF06-4E82-9500-7931856FBA74} = {B4C00BD2-E63C-4991-90FC-893B941FB01D}
+		{BEAE4231-D5A0-4626-9251-D0E3303931C3} = {B4C00BD2-E63C-4991-90FC-893B941FB01D}
+		{26EEC875-75C8-40D2-A5C3-051A2721F1FF} = {C9164496-7036-405E-AD6C-4651D7CD3FF6}
+		{FCC4DB62-EDE3-4C85-B8E8-F534A651E8FD} = {C9164496-7036-405E-AD6C-4651D7CD3FF6}
+		{66D05098-B89A-4DBF-9DA0-64097F67D424} = {C9164496-7036-405E-AD6C-4651D7CD3FF6}
+	EndGlobalSection
+EndGlobal

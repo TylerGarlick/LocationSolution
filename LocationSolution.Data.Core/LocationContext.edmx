@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LocationSolution.Data.Core.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="LocationSolutionDataCoreStoreContainer">
+          <EntitySet Name="City" EntityType="LocationSolution.Data.Core.Store.City" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Country" EntityType="LocationSolution.Data.Core.Store.Country" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="State" EntityType="LocationSolution.Data.Core.Store.State" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ZipCode" EntityType="LocationSolution.Data.Core.Store.ZipCode" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_City_State" Association="LocationSolution.Data.Core.Store.FK_City_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="LocationSolution.Data.Core.Store.FK_State_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZipCode_City" Association="LocationSolution.Data.Core.Store.FK_ZipCode_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="ZipCode" EntitySet="ZipCode" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Country_Code" />
+            <PropertyRef Name="State_ID" />
+            <PropertyRef Name="City_ID" />
+          </Key>
+          <Property Name="Country_Code" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="State_ID" Type="int" Nullable="false" />
+          <Property Name="City_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="City_Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Nick_Name" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Country_Code" />
+          </Key>
+          <Property Name="Country_Code" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="Country_Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="country_Order" Type="int" />
+          <Property Name="displayable" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Country_Code" />
+            <PropertyRef Name="State_ID" />
+          </Key>
+          <Property Name="Country_Code" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="State_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="State_Code" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="State_Name" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="contiguous_land" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="is_territory" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="ZipCode">
+          <Key>
+            <PropertyRef Name="Country_Code" />
+            <PropertyRef Name="State_Id" />
+            <PropertyRef Name="City_ID" />
+            <PropertyRef Name="Zip_Code" />
+          </Key>
+          <Property Name="Country_Code" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="State_Id" Type="int" Nullable="false" />
+          <Property Name="City_ID" Type="int" Nullable="false" />
+          <Property Name="Zip_Code" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="latitude" Type="float" />
+          <Property Name="longitude" Type="float" />
+        </EntityType>
+        <Association Name="FK_City_State">
+          <End Role="State" Type="LocationSolution.Data.Core.Store.State" Multiplicity="1" />
+          <End Role="City" Type="LocationSolution.Data.Core.Store.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Country_Code" />
+              <PropertyRef Name="State_ID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="Country_Code" />
+              <PropertyRef Name="State_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="LocationSolution.Data.Core.Store.Country" Multiplicity="1" />
+          <End Role="State" Type="LocationSolution.Data.Core.Store.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_Code" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="Country_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZipCode_City">
+          <End Role="City" Type="LocationSolution.Data.Core.Store.City" Multiplicity="1" />
+          <End Role="ZipCode" Type="LocationSolution.Data.Core.Store.ZipCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Country_Code" />
+              <PropertyRef Name="State_ID" />
+              <PropertyRef Name="City_ID" />
+            </Principal>
+            <Dependent Role="ZipCode">
+              <PropertyRef Name="Country_Code" />
+              <PropertyRef Name="State_Id" />
+              <PropertyRef Name="City_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LocationSolution.Data.Core" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="LocationsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="LocationSolution.Data.Core.City" />
+          <EntitySet Name="Countries" EntityType="LocationSolution.Data.Core.Country" />
+          <EntitySet Name="States" EntityType="LocationSolution.Data.Core.State" />
+          <EntitySet Name="ZipCodes" EntityType="LocationSolution.Data.Core.ZipCode" />
+          <AssociationSet Name="FK_City_State" Association="LocationSolution.Data.Core.FK_City_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZipCode_City" Association="LocationSolution.Data.Core.FK_ZipCode_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="ZipCode" EntitySet="ZipCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="LocationSolution.Data.Core.FK_State_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CountyCode" />
+            <PropertyRef Name="StateId" />
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CountyCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="NickName" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="State" Relationship="LocationSolution.Data.Core.FK_City_State" FromRole="City" ToRole="State" />
+          <NavigationProperty Name="ZipCodes" Relationship="LocationSolution.Data.Core.FK_ZipCode_City" FromRole="City" ToRole="ZipCode" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryCode" />
+          </Key>
+          <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="CountryOrder" Type="Int32" />
+          <Property Name="Displayable" Type="String" MaxLength="1" Unicode="false" FixedLength="true" DefaultValue="1" />
+          <NavigationProperty Name="States" Relationship="LocationSolution.Data.Core.FK_State_Country" FromRole="Country" ToRole="State" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="CountryCode" />
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="StateName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="ContiguousLand" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="IsTerritory" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" DefaultValue="0" />
+          <NavigationProperty Name="Cities" Relationship="LocationSolution.Data.Core.FK_City_State" FromRole="State" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="LocationSolution.Data.Core.FK_State_Country" FromRole="State" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="ZipCode">
+          <Key>
+            <PropertyRef Name="CountyCode" />
+            <PropertyRef Name="StateId" />
+            <PropertyRef Name="CityId" />
+            <PropertyRef Name="Zip" />
+          </Key>
+          <Property Name="CountyCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="Zip" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Longitude" Type="Double" />
+          <NavigationProperty Name="City" Relationship="LocationSolution.Data.Core.FK_ZipCode_City" FromRole="ZipCode" ToRole="City" />
+        </EntityType>
+        <Association Name="FK_City_State">
+          <End Role="State" Type="LocationSolution.Data.Core.State" Multiplicity="1" />
+          <End Role="City" Type="LocationSolution.Data.Core.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="CountryCode" />
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="CountyCode" />
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZipCode_City">
+          <End Role="City" Type="LocationSolution.Data.Core.City" Multiplicity="1" />
+          <End Role="ZipCode" Type="LocationSolution.Data.Core.ZipCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CountyCode" />
+              <PropertyRef Name="StateId" />
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="ZipCode">
+              <PropertyRef Name="CountyCode" />
+              <PropertyRef Name="StateId" />
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="LocationSolution.Data.Core.Country" Multiplicity="1" />
+          <End Role="State" Type="LocationSolution.Data.Core.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryCode" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LocationSolutionDataCoreStoreContainer" CdmEntityContainer="LocationsEntities">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="LocationSolution.Data.Core.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CountyCode" ColumnName="Country_Code" />
+                <ScalarProperty Name="StateId" ColumnName="State_ID" />
+                <ScalarProperty Name="CityId" ColumnName="City_ID" />
+                <ScalarProperty Name="CityName" ColumnName="City_Name" />
+                <ScalarProperty Name="NickName" ColumnName="Nick_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="LocationSolution.Data.Core.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CountryCode" ColumnName="Country_Code" />
+                <ScalarProperty Name="CountryName" ColumnName="Country_Name" />
+                <ScalarProperty Name="CountryOrder" ColumnName="country_Order" />
+                <ScalarProperty Name="Displayable" ColumnName="displayable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="LocationSolution.Data.Core.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="CountryCode" ColumnName="Country_Code" />
+                <ScalarProperty Name="StateId" ColumnName="State_ID" />
+                <ScalarProperty Name="StateCode" ColumnName="State_Code" />
+                <ScalarProperty Name="StateName" ColumnName="State_Name" />
+                <ScalarProperty Name="ContiguousLand" ColumnName="contiguous_land" />
+                <ScalarProperty Name="IsTerritory" ColumnName="is_territory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZipCodes">
+            <EntityTypeMapping TypeName="LocationSolution.Data.Core.ZipCode">
+              <MappingFragment StoreEntitySet="ZipCode">
+                <ScalarProperty Name="CountyCode" ColumnName="Country_Code" />
+                <ScalarProperty Name="StateId" ColumnName="State_Id" />
+                <ScalarProperty Name="CityId" ColumnName="City_ID" />
+                <ScalarProperty Name="Zip" ColumnName="Zip_Code" />
+                <ScalarProperty Name="Latitude" ColumnName="latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

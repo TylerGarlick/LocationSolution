@@ -1,0 +1,52 @@
+﻿@model LocationSolution.Mvc.Web.Models.ZipCodes.ZipCodesIndexModel
+
+@{
+    ViewBag.Title = "ZipCodes";
+}
+
+<h1>Zip Codes</h1>
+
+<div class="navbar">
+    <div class="navbar-inner">
+        @using (Html.BeginForm("Index", "ZipCodes", FormMethod.Get, new { @class = "navbar-form pull-left" }))
+        {
+            <div class="input-append">
+                @Html.TextBox("Query", Request["Query"])
+                <button type="submit" class="btn">Search</button>
+            </div>
+        }
+        <div class="pull-right">
+            @Html.ActionLink("New Zip Code", "Create", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Country</th>
+            <th>State</th>
+            <th>City</th>
+            <th>Zip</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var zipCode in Model.ZipCodes)
+        {
+            <tr>
+                <td>@Html.ActionLink(zipCode.City.State.Country.CountryName, "Edit", "Countries", new { id = zipCode.City.State.Country.CountryCode }, null)</td>
+                <td>@Html.ActionLink(zipCode.City.State.StateName, "Edit", "Countries", new { id = zipCode.City.State.StateId }, null)</td>
+                <td>@Html.ActionLink(zipCode.City.CityName, "Edit", "Cities", new { id = zipCode.CityId }, null)</td>
+                <td>@zipCode.Zip</td>
+                <td>@zipCode.Longitude</td>
+                <td>@zipCode.Latitude</td>
+                <td>
+                    <div class="pull-right">@Html.ActionLink("Edit", "Edit", new { id = zipCode.Zip }, new { @class = "btn btn-mini" }) @Html.ActionLink("Delete", "Delete", new { id = zipCode.Zip }, new { @class = "btn btn-mini btn-danger" })</div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

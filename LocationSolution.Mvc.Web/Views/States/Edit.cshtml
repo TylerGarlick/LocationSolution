@@ -1,0 +1,62 @@
+﻿@model LocationSolution.Mvc.Web.Models.States.StateUpdateModel
+
+@{
+    ViewBag.Title = "Update " + Model.StateName;
+}
+
+<h1>Update State <small>@Model.StateName</small></h1>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(false)
+    <div class="control-group">
+        @Html.LabelFor(m => m.CountryCode)
+        <div class="controls">
+            <select data-val="true" data-val-required="The Country Code field is required." id="CountryCode" name="CountryCode" data-default-value="@Model.CountryCode" data-url="@Url.Content("~/api/countries")">
+                <option value="">Select a Country</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.StateCode)
+        <div class="controls">
+            @Html.TextBoxFor(m => m.StateCode, new { maxlength = "10", @class = "span1" })
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.StateName)
+        <div class="controls">
+            @Html.TextBoxFor(m => m.StateName, new { maxlength = "30", @class = "span2" })
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.ContiguousLand)
+        <div class="controls">
+            @Html.EditorFor(m => m.ContiguousLand)
+        </div>
+    </div>
+    
+    <div class="control-group">
+        @Html.LabelFor(m => m.IsTerritory)
+        <div class="controls">
+            @Html.EditorFor(m => m.IsTerritory)
+        </div>
+    </div>
+    
+    <div class="form-actions">
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn" })
+        <div class="pull-right">
+            <button type="submit" class="btn btn-primary">Update State</button>
+        </div>
+    </div>
+}
+
+
+@section scripts
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/App/Countries/country-utils.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/App/States/states.js")"></script>
+}

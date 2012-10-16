@@ -1,0 +1,18 @@
+﻿@model LocationSolution.Mvc.Web.Models.Cities.CityDeleteModel
+
+@{
+    ViewBag.Title = "Delete City";
+}
+
+<h1>Delete City <small>@Model.City.CityName</small></h1>
+@using (Html.BeginForm())
+{
+    <p>Are you sure you want to delete <strong>@Model.City.CityName</strong>? This is permanent!</p>  
+    <div class="form-actions">
+        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn" })
+        <div class="pull-right">
+            <button type="submit" class="btn btn-danger">Delete City</button>
+        </div>
+    </div>
+}
+

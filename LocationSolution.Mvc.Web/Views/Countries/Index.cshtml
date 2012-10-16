@@ -1,0 +1,47 @@
+﻿@model LocationSolution.Mvc.Web.Models.Countries.CountriesIndexModel
+
+@{
+    ViewBag.Title = "Countries";
+}
+
+<h1>Countries</h1>
+<div class="navbar">
+    <div class="navbar-inner">
+        @using (Html.BeginForm("Index", "Countries", FormMethod.Get, new { @class = "navbar-form pull-left" }))
+        {
+            <div class="input-append">
+                @Html.TextBox("Query", Request["Query"])
+                <button type="submit" class="btn">Search</button>
+            </div>
+        }
+        <div class="pull-right">
+            @Html.ActionLink("New Country", "Create", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Country Code</th>
+            <th>Country Name</th>
+            <th>Country Order</th>
+            <th>Displayable</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var country in Model.Countries)
+        {
+            <tr>
+                <td>@country.CountryCode</td>
+                <td>@country.CountryName</td>
+                <td>@country.CountryOrder</td>
+                <td>@(country.Displayable == "1" ? "Yes" : "No")</td>
+                <td>
+                    <div class="pull-right">@Html.ActionLink("Edit", "Edit", new { id = country.CountryCode }, new { @class = "btn btn-mini" }) @Html.ActionLink("Delete", "Delete", new { id = country.CountryCode }, new { @class = "btn btn-mini btn-danger" })</div>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

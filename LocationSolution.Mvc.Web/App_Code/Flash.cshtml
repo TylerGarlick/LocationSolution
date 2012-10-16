@@ -1,0 +1,28 @@
+﻿@using System.Web.Mvc
+@helper FlashMessage(TempDataDictionary tempData)
+{
+    var message = "";
+    var className = "";
+    if (tempData["info"] != null)
+    {
+        message = tempData["info"].ToString();
+        className = "alert-success";
+    }
+    else if (tempData["warning"] != null)
+    {
+        message = tempData["warning"].ToString();
+        className = "alert-info";
+    }
+    else if (tempData["error"] != null)
+    {
+        message = tempData["error"].ToString();
+        className = "alert-error";
+    }
+    if (!String.IsNullOrEmpty(message))
+    {
+    <div class="alert @className">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        @message
+    </div>
+    }
+}
