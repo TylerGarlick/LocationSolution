@@ -1,0 +1,24 @@
+﻿@model LocationSolution.Mvc.Web.Models.Search.SearchIndexModel
+
+@{
+    ViewBag.Title = "Search Results";
+}
+
+<h1>Search Results</h1>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var result in Model.Results)
+        {
+            <tr>
+                <td>@result.Description</td>
+                <td><a href="@result.Url">@result.Name</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

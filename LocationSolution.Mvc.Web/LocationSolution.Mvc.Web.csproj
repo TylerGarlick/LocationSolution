@@ -157,6 +157,7 @@
     <Compile Include="Controllers\Api\StatesController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\StatesController.cs" />
     <Compile Include="Controllers\ZipCodesController.cs" />
     <Compile Include="Extensions\ErrorExceptionExtensions.cs" />
@@ -175,6 +176,8 @@
     <Compile Include="Models\Countries\CountriesIndexModel.cs" />
     <Compile Include="Models\Countries\CountryCreateModel.cs" />
     <Compile Include="Models\Countries\CountryUpdateModel.cs" />
+    <Compile Include="Models\Search\SearchIndexModel.cs" />
+    <Compile Include="Models\Search\SearchResult.cs" />
     <Compile Include="Models\States\BasicStateModel.cs" />
     <Compile Include="Models\States\StateCreateModel.cs" />
     <Compile Include="Models\States\StateDeleteModel.cs" />
@@ -310,6 +313,7 @@
     <Content Include="Views\ZipCodes\Create.cshtml" />
     <Content Include="Views\ZipCodes\Delete.cshtml" />
     <Content Include="Views\ZipCodes\Edit.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

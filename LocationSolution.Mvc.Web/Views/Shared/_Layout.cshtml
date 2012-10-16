@@ -17,7 +17,15 @@
                     <span class="icon-bar"></span>
                 </a>
                 <a class="brand" href="#">Locations</a>
-                <!--/.nav-collapse -->
+
+                @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "navbar-form pull-right" }))
+                {
+                    <div class="input-append">
+                        @Html.TextBox("Query", Request["Query"])
+                        <button type="submit" class="btn">Global Search</button>
+                    </div>
+                }
+
             </div>
         </div>
     </div>
